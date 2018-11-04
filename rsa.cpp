@@ -1,0 +1,62 @@
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+using namespace std;
+int eef(int,int);
+int modular_pow(int base, int exponent, int modulus);
+int main()
+{
+      int e,d,p,q,n,P1;
+      cout<<"enter plain text"<<endl;
+      cin>>P1;
+      cout<<"enter two large prime numbers"<<endl;
+      cin>>p>>q;
+      n = p*q;
+      int fn = (p-1)*(q-1);
+      l:
+      cout<<"choose the value of e "<<endl;
+      cin>>e;
+      if(e>1&&e<fn&&__gcd(e,fn)==1)
+      {
+      int t = e;
+      }
+      else
+      { 
+         cout<<"the value of e is incorrect"<<endl;
+         e=0;
+         goto l;
+         }
+         
+      d = eef(e,fn);
+      cout<<"bobs public key are "<<e<<" "<<n<<endl;
+      cout<<"bobs private key is "<<d<<" "<<endl;
+      
+      int Y = modular_pow(P1, e, n);
+      cout<<"chiphertext"<<" "<<Y<<endl;
+      
+    
+      int X = modular_pow(Y,d,n);
+      cout<<"plaintext"<<" "<<X<<endl;
+return 0;
+}
+int eef(int e,int fn)
+{
+    e = e%fn; 
+    for (int x=1; x<fn; x++) 
+       if ((e*x) % fn == 1) 
+          return x; 
+} 
+  
+int modular_pow(int base, int exponent, int modulus)
+{
+    int result = 1;
+    while (exponent > 0)
+    {
+        if (exponent % 2 == 1)
+            result = (result * base) % modulus;
+        exponent = exponent >> 1;
+        base = (base * base) % modulus;
+    }
+    return result;
+}
+
