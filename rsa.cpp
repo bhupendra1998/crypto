@@ -30,15 +30,16 @@ int main()
       d = eef(e,fn);
       cout<<"bobs public key are "<<e<<" "<<n<<endl;
       cout<<"bobs private key is "<<d<<" "<<endl;
-      
+//encryption      
       int Y = modular_pow(P1, e, n);
       cout<<"chiphertext"<<" "<<Y<<endl;
       
-    
+//decryption   
       int X = modular_pow(Y,d,n);
       cout<<"plaintext"<<" "<<X<<endl;
 return 0;
 }
+//extended euclidian function
 int eef(int e,int fn)
 {
     e = e%fn; 
@@ -46,7 +47,8 @@ int eef(int e,int fn)
        if ((e*x) % fn == 1) 
           return x; 
 } 
-  
+
+//fast exponentiation function
 int modular_pow(int base, int exponent, int modulus)
 {
     int result = 1;
